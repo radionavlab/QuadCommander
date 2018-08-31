@@ -2,11 +2,6 @@ from action import Action
 import numpy as np
 
 class Line(Action):
-
-    self.__start_point = np.array([0,0,0])
-    self.__end_point   = np.array([0,0,0])
-    self.__velocity    = np.array([0])
-
     def __init__(self, start_point, end_point, velocity):
         super().__init__()
 

@@ -1,4 +1,5 @@
 import numpy as np
+from circle import Circle
 
 class AddCircleHandler:
 

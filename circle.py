@@ -2,12 +2,6 @@ from action import Action
 import numpy as np
 
 class Circle(Action):
-    
-    self.__center_point        = np.array([0,0,0])
-    self.__start_point         = np.array([0,0,0])
-    self.__tangential_velocity = np.array([0])
-    self.__arc_angle           = np.array([0])
-
     def __init__(self, center_point, start_point, tangential_velocity, arc_angle):
         super().__init__()
 

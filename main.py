@@ -4,11 +4,13 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import tkinter as tk
 
-from line           import *
-from circle         import *
-from action_list    import *
-from config_bar     import *
-from application    import *
+from line                   import Line
+from circle                 import Circle
+from action_list            import ActionList
+from config_bar             import ConfigBar
+from application            import Application
+from add_circle_handler     import AddCircleHandler
+from add_line_handler       import AddLineHandler
 
 def AddCircleConfigBar(application, action_list):
     application.AddActionConfigBar(

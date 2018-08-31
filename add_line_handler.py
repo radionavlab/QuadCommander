@@ -1,4 +1,5 @@
 import numpy as np
+from line import Line
 
 class AddLineHandler:
     def __init__(self, application, action_list):
