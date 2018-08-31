@@ -6,6 +6,5 @@ class LoadButtonHandler:
         self.__action_list = action_list
 
     def Handle(self, file_path): 
-      self.__action_list = pickle.load(open(file_path, "rb"))  
-      print(self.__action_list)
-      self.__application.DrawPlot()
+        self.__action_list = pickle.load(open(file_path, "rb"))  
+        self.__application.DrawPlot()
