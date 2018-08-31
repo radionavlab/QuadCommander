@@ -22,23 +22,34 @@ from matplotlib.figure import Figure
 class Application(tk.Frame):
     def __init__(self, root, action_list):
         super().__init__(root)
-        self.__root = root
-        self.__action_list = action_list
-        self.__action_config_frame = tk.Frame(self.__root)
-        self.__plot_frame = tk.Frame(self.__root)
+        self.__root                 = root
+        self.__action_list          = action_list
+        self.__action_config_frame  = tk.Frame(self.__root)
+        self.__plot_frame           = tk.Frame(self.__root)
+        self.__option_config_frame  = tk.Frame(self.__root)
 
         self.__configure__()
 
 
     def __configure__(self):
+        # Application settings
         self.__root.title("Application")
         self.__root.minsize(800, 800)
 
+        # Set grid positions for top-level frames
         self.__action_config_frame.grid(row=0)
         self.__plot_frame.grid(row=1)
+        self.__option_config_frame.grid(row=2)
 
+        # Don't propogate grid properties to children
         self.__action_config_frame.grid_propagate(False)
         self.__plot_frame.grid_propagate(False)
+        self.__option_config_frame.grid_propagate(False)
+
+        # Add option buttons
+        tk.Button(self.__option_config_frame, text="Save", command=None).pack(side="left", padx=(10,0))
+        tk.Button(self.__option_config_frame, text="Load", command=None).pack(side="left", padx=(10,0))
+        tk.Button(self.__option_config_frame, text="Execute", command=None).pack(side="left", padx=(10,0))
 
 
 
