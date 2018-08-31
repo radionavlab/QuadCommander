@@ -10,28 +10,35 @@ from action_list import *
 from action_config import *
 from application import *
 
-def AddCircleActionBar(application, action_list):
+def AddCircleConfigBar(application, action_list):
     application.AddActionConfigBar(
         ActionConfig()
             .Name("Circle")
-            .EntryLabels(["Initial Point", "Center Point", "Period", "Arc Angle"])
-            .Callback(AddCircleController(application, action_list).Handle))
+            .EntryLabels(["Center Point", "Start Point", "Tangential Velocity", "Arc Angle"])
+            .Callback(AddCircleHandler(application, action_list).Handle))
 
-def AddLineActionBar(application, action_list):
+def AddLineConfigBar(application, action_list):
     application.AddActionConfigBar(
         ActionConfig()
             .Name("Line")
-            .EntryLabels(["Start Point", "End Point", "Time"])
-            .Callback(AddLineController(application, action_list).Handle))
+            .EntryLabels(["Start Point", "End Point", "Velocity"])
+            .Callback(AddLineHandler(application, action_list).Handle))
 
 def main():
+    # Create graphics root
     root = tk.Tk()
+
+    # Create action list
     action_list = ActionList()
 
+    # Create custom graphics application
     application = Application(root, action_list)
-    AddCircleActionBar(application, action_list)
-    AddLineActionBar(application, action_list)
 
+    # Add action elements
+    AddCircleConfigBar(application, action_list)
+    AddLineConfigBar(application, action_list)
+
+    # Start
     root.mainloop()
 
 
