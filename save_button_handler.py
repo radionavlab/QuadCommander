@@ -5,4 +5,4 @@ class SaveButtonHandler:
         self.__action_list = action_list
 
     def Handle(self, file_path): 
-        pickle.dump(open(file_path, "wb"))  
+        pickle.dump(self.__action_list, open(file_path, "wb"))  

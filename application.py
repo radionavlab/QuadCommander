@@ -6,6 +6,8 @@ from tkinter import Button
 from line import Line
 from circle import Circle
 from popup_text_box import PopupTextBox
+from save_button_handler import SaveButtonHandler
+from load_button_handler import LoadButtonHandler
 
 import numpy as np
 
@@ -47,14 +49,25 @@ class Application(tk.Frame):
         self.__plot_frame.grid_propagate(False)
         self.__option_config_frame.grid_propagate(False)
 
-        # Add option buttons
+        # Add save button
         tk.Button(self.__option_config_frame, text="Save",
                 command=PopupTextBox(
                     window_title="Save",
                     button_text="Save",
                     label_text="Save Path",
-                    button_command=print).Popup).pack(side="left", padx=(10,0))
-        tk.Button(self.__option_config_frame, text="Load", command=None).pack(side="left", padx=(10,0))
+                    button_command=SaveButtonHandler(self.__action_list).Handle).Popup
+                ).pack(side="left", padx=(10,0))
+
+        # Add load button
+        tk.Button(self.__option_config_frame, text="Load",
+                command=PopupTextBox(
+                    window_title="Load",
+                    button_text="Load",
+                    label_text="Load Path",
+                    button_command=LoadButtonHandler(self, self.__action_list).Handle).Popup
+                ).pack(side="left", padx=(10,0))
+
+        # Add execute trajectory button
         tk.Button(self.__option_config_frame, text="Execute", command=None).pack(side="left", padx=(10,0))
 
 
