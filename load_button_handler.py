@@ -6,5 +6,5 @@ class LoadButtonHandler:
         self.__application = application
 
     def Handle(self, file_path): 
-        self.__action_list = pickle.load(open(file_path, "rb"))
+        self.__action_list.Copy(pickle.load(open(file_path, "rb")))
         self.__application.DrawPlot()
