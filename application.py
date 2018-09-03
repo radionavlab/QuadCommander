@@ -5,6 +5,7 @@ from tkinter import Button
 
 from line import Line
 from circle import Circle
+from popup_text_box import PopupTextBox
 
 import numpy as np
 
@@ -47,7 +48,12 @@ class Application(tk.Frame):
         self.__option_config_frame.grid_propagate(False)
 
         # Add option buttons
-        tk.Button(self.__option_config_frame, text="Save", command=None).pack(side="left", padx=(10,0))
+        tk.Button(self.__option_config_frame, text="Save",
+                command=PopupTextBox(
+                    window_title="Save",
+                    button_text="Save",
+                    label_text="Save Path",
+                    button_command=print).Popup).pack(side="left", padx=(10,0))
         tk.Button(self.__option_config_frame, text="Load", command=None).pack(side="left", padx=(10,0))
         tk.Button(self.__option_config_frame, text="Execute", command=None).pack(side="left", padx=(10,0))
 
