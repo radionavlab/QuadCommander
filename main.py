@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import tkinter as tk
+import jsonpickle.ext.numpy as jp_numpy
 
 from line                   import Line
 from circle                 import Circle
@@ -29,6 +30,9 @@ def AddLineConfigBar(application, action_list):
             .Callback(AddLineHandler(application, action_list).Handle))
 
 def main():
+    # Configure the json numpy handlers
+    jp_numpy.register_handlers()
+
     # Create graphics root
     root = tk.Tk()
 

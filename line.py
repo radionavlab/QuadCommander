@@ -8,7 +8,12 @@ class Line(Action):
         self.__start_point = start_point
         self.__end_point   = end_point
         self.__velocity    = velocity
-        self.__time        = np.linalg.norm(self.__start_point - self.__end_point) / self.__velocity
+
+        self.__cfg__()
+
+    def __cfg__(self):
+        self.__time = np.linalg.norm(self.__start_point - self.__end_point) / self.__velocity
+
 
     def Serialize(self, frequency):
         dt = self.__time / frequency
@@ -18,4 +23,22 @@ class Line(Action):
             np.linspace(self.__start_point[2], self.__end_point[2], dt, endpoint=True)))
 
 
+    def __getstate__(self):
+        """
+        Return the state to be serialized with json. 
+        """
+        state = {}
+        state['_Line__start_point']    = self.__start_point
+        state['_Line__end_point']      = self.__end_point
+        state['_Line__velocity']       = self.__velocity
+
+        return state
+
+    
+    def __setstate__(self, state):
+        """
+        Fill object from unserialized json
+        """
+        self.__dict__.update(state)
+        self.__cfg__()
 

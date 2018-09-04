@@ -1,5 +1,8 @@
 import numpy as np
+import json
+
 from action import Action
+
 
 
 class ActionList(Action):
@@ -21,4 +24,3 @@ class ActionList(Action):
 
     def Serialize(self, frequency):
         return np.concatenate([action.Serialize(frequency) for action in self.__action_list], 1) 
-

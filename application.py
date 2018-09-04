@@ -41,8 +41,8 @@ class Application(tk.Frame):
 
         # Set grid positions for top-level frames
         self.__action_config_frame.grid(row=0)
-        self.__plot_frame.grid(row=1)
-        self.__option_config_frame.grid(row=2)
+        self.__option_config_frame.grid(row=1)
+        self.__plot_frame.grid(row=2)
 
         # Don't propogate grid properties to children
         self.__action_config_frame.grid_propagate(False)

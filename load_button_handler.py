@@ -1,4 +1,4 @@
-import pickle
+import jsonpickle as jp
 
 class LoadButtonHandler:
     def __init__(self, application, action_list):
@@ -6,5 +6,8 @@ class LoadButtonHandler:
         self.__application = application
 
     def Handle(self, file_path): 
-        self.__action_list.Copy(pickle.load(open(file_path, "rb")))
+        with open(file_path, "r") as f:
+            data = f.read()
+            self.__action_list.Copy(jp.decode(data))
+
         self.__application.DrawPlot()

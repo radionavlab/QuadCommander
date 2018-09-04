@@ -10,6 +10,14 @@ class Circle(Action):
         self.__tangential_velocity  = tangential_velocity 
         self.__arc_angle            = arc_angle
 
+        # Configure the derived properties
+        self.__cfg__()
+
+
+    def __cfg__(self):
+        """
+        Configure derived properties. Removed from constructor for json purposes
+        """
         self.__radius               = np.linalg.norm(self.__start_point - self.__center_point)
         self.__initial_angle        = np.arctan2(
                                         (self.__start_point - self.__center_point)[1], 
@@ -26,3 +34,24 @@ class Circle(Action):
         pos = dr + np.reshape(self.__center_point, (dr.shape[0],1))
 
         return pos 
+
+    def __getstate__(self):
+        """
+        Return the state to be serialized with json. 
+        """
+        state = {}
+        state['_Circle__center_point']           = self.__center_point
+        state['_Circle__start_point']            = self.__start_point
+        state['_Circle__tangential_velocity']    = self.__tangential_velocity
+        state['_Circle__arc_angle']              = self.__arc_angle
+
+        return state
+
+    
+    def __setstate__(self, state):
+        """
+        Fill object from unserialized json
+        """
+        self.__dict__.update(state)
+        self.__cfg__()
+
