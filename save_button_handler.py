@@ -9,7 +9,7 @@ class SaveButtonHandler:
         with open(file_path, "w") as f:
             print(jp.encode(self.__action_list), file=f)
 
-        # Pretty print
+        # Pretty print with json.tool
         command = \
                 "mv " + file_path + " " + file_path + ".tmp; " + \
                 "cat " + file_path + ".tmp | python -m json.tool > " + file_path + "; " \
