@@ -89,8 +89,9 @@ class Application(tk.Frame):
         subplot = figure.add_subplot(111, projection='3d')
 
         # Serialize the action list and display it
-        data = self.__action_list.Serialize(0.05)
-        subplot.plot(data[0,:], data[1,:], data[2,:])
+        data_list = self.__action_list.Serialize(0.05)
+        for data in data_list:
+            subplot.plot(data[0,:], data[1,:], data[2,:])
 
         # Labels and limits
         subplot.set_xlabel("X (m)")
