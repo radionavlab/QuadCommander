@@ -17,7 +17,7 @@ def AddCircleConfigBar(application, action_list):
     application.AddActionConfigBar(
         ConfigBar()
             .Name("Circle")
-            .EntryLabels(["Center Point", "Start Point", "Tangential Velocity", "Arc Angle"])
+            .EntryLabels(["Center Point", "Start Point", "Point of Interest", "Tangential Velocity", "Arc Angle"])
             .ButtonText("Add")
             .Callback(AddCircleHandler(application, action_list).Handle))
 
@@ -25,7 +25,7 @@ def AddLineConfigBar(application, action_list):
     application.AddActionConfigBar(
         ConfigBar()
             .Name("Line")
-            .EntryLabels(["Start Point", "End Point", "Velocity"])
+            .EntryLabels(["Start Point", "End Point", "Point of Interest", "Velocity"])
             .ButtonText("Add")
             .Callback(AddLineHandler(application, action_list).Handle))
 

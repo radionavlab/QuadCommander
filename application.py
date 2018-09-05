@@ -64,10 +64,11 @@ class Application(tk.Frame):
                     button_command=LoadButtonHandler(self, self.__action_list).Handle).Popup
                 ).pack(side="left", padx=(10,0))
 
-        # Add execute trajectory button
-        tk.Button(self.__option_config_frame, text="Execute", command=self.AnimatePlot).pack(side="left", padx=(10,0))
+        # Add preview button
+        tk.Button(self.__option_config_frame, text="Preview", command=self.AnimatePlot).pack(side="left", padx=(10,0))
 
-        # LoadButtonHandler(self, self.__action_list).Handle('archive/circle.json')
+        # Add execute trajectory button
+        tk.Button(self.__option_config_frame, text="Execute", command=None).pack(side="left", padx=(10,0))
 
 
 
@@ -129,7 +130,9 @@ class Application(tk.Frame):
             xs=np.array([0]),
             ys=np.array([0]),
             zs=np.array([0]),
-            s=40
+            s=200,
+            marker="*",
+            c='k'
             )
 
         subplot.set_xlabel("X (m)")
@@ -137,7 +140,6 @@ class Application(tk.Frame):
         subplot.set_zlabel("Z (m)")
 
         def animate(i):
-            print(i)
             scat._offsets3d = (
                     np.array([trajectory[0,i]]),
                     np.array([trajectory[1,i]]),

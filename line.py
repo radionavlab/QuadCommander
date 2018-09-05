@@ -2,12 +2,13 @@ from action import Action
 import numpy as np
 
 class Line(Action):
-    def __init__(self, start_point, end_point, velocity):
+    def __init__(self, start_point, end_point, point_of_interest, velocity):
         super().__init__()
 
-        self.__start_point = start_point
-        self.__end_point   = end_point
-        self.__velocity    = velocity
+        self.__start_point       = start_point
+        self.__end_point         = end_point
+        self.__point_of_interest = point_of_interest
+        self.__velocity          = velocity
 
         self.__cfg__()
 
@@ -28,9 +29,10 @@ class Line(Action):
         Return the state to be serialized with json. 
         """
         state = {}
-        state['_Line__start_point']    = self.__start_point
-        state['_Line__end_point']      = self.__end_point
-        state['_Line__velocity']       = self.__velocity
+        state['_Line__start_point']       = self.__start_point
+        state['_Line__end_point']         = self.__end_point
+        state['_Line__point_of_interest'] = self.__point_of_interest
+        state['_Line__velocity']          = self.__velocity
 
         return state
 

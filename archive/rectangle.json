@@ -12,6 +12,15 @@
                         1.5
                     ]
                 },
+                "_Line__point_of_interest": {
+                    "dtype": "float64",
+                    "py/object": "numpy.ndarray",
+                    "values": [
+                        1000.0,
+                        0.0,
+                        0.0
+                    ]
+                },
                 "_Line__start_point": {
                     "dtype": "float64",
                     "py/object": "numpy.ndarray",
@@ -42,6 +51,15 @@
                         1.5
                     ]
                 },
+                "_Line__point_of_interest": {
+                    "dtype": "float64",
+                    "py/object": "numpy.ndarray",
+                    "values": [
+                        1000.0,
+                        0.0,
+                        0.0
+                    ]
+                },
                 "_Line__start_point": {
                     "dtype": "float64",
                     "py/object": "numpy.ndarray",
@@ -72,6 +90,15 @@
                         1.5
                     ]
                 },
+                "_Line__point_of_interest": {
+                    "dtype": "float64",
+                    "py/object": "numpy.ndarray",
+                    "values": [
+                        1000.0,
+                        0.0,
+                        0.0
+                    ]
+                },
                 "_Line__start_point": {
                     "dtype": "float64",
                     "py/object": "numpy.ndarray",
@@ -102,6 +129,15 @@
                         1.5
                     ]
                 },
+                "_Line__point_of_interest": {
+                    "dtype": "float64",
+                    "py/object": "numpy.ndarray",
+                    "values": [
+                        1000.0,
+                        0.0,
+                        0.0
+                    ]
+                },
                 "_Line__start_point": {
                     "dtype": "float64",
                     "py/object": "numpy.ndarray",
@@ -130,6 +166,15 @@
                         -3.0,
                         -1.0,
                         1.5
+                    ]
+                },
+                "_Line__point_of_interest": {
+                    "dtype": "float64",
+                    "py/object": "numpy.ndarray",
+                    "values": [
+                        1000.0,
+                        0.0,
+                        0.0
                     ]
                 },
                 "_Line__start_point": {
@@ -158,6 +203,15 @@
                     "py/object": "numpy.ndarray",
                     "values": [
                         0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                "_Line__point_of_interest": {
+                    "dtype": "float64",
+                    "py/object": "numpy.ndarray",
+                    "values": [
+                        1000.0,
                         0.0,
                         0.0
                     ]

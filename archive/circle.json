@@ -49,6 +49,15 @@
                         1.0
                     ]
                 },
+                "_Circle__point_of_interest": {
+                    "dtype": "float64",
+                    "py/object": "numpy.ndarray",
+                    "values": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
                 "_Circle__start_point": {
                     "dtype": "float64",
                     "py/object": "numpy.ndarray",
@@ -114,6 +123,15 @@
                         0.0,
                         0.0,
                         2.0
+                    ]
+                },
+                "_Circle__point_of_interest": {
+                    "dtype": "float64",
+                    "py/object": "numpy.ndarray",
+                    "values": [
+                        0.0,
+                        0.0,
+                        0.0
                     ]
                 },
                 "_Circle__start_point": {

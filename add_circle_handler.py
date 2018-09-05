@@ -10,12 +10,14 @@ class AddCircleHandler:
     def Handle(self, input_list):
         center_point        = self.__parse_vector(input_list[0])
         initial_point       = self.__parse_vector(input_list[1])
-        tangential_velocity = self.__parse_vector(input_list[2])
-        arc_angle           = self.__parse_vector(input_list[3])
+        point_of_interest   = self.__parse_vector(input_list[2])
+        tangential_velocity = self.__parse_vector(input_list[3])
+        arc_angle           = self.__parse_vector(input_list[4])
 
         self.__action_list.AddAction(
             Circle(center_point,
                    initial_point,
+                   point_of_interest,
                    tangential_velocity,
                    arc_angle) 
         )

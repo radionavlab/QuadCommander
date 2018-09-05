@@ -2,11 +2,12 @@ from action import Action
 import numpy as np
 
 class Circle(Action):
-    def __init__(self, center_point, start_point, tangential_velocity, arc_angle):
+    def __init__(self, center_point, start_point, point_of_interest, tangential_velocity, arc_angle):
         super().__init__()
 
         self.__center_point         = center_point
         self.__start_point          = start_point
+        self.__point_of_interest    = point_of_interest
         self.__tangential_velocity  = tangential_velocity 
         self.__arc_angle            = arc_angle
 
@@ -42,6 +43,7 @@ class Circle(Action):
         state = {}
         state['_Circle__center_point']           = self.__center_point
         state['_Circle__start_point']            = self.__start_point
+        state['_Circle__point_of_interest']      = self.__point_of_interest
         state['_Circle__tangential_velocity']    = self.__tangential_velocity
         state['_Circle__arc_angle']              = self.__arc_angle
 
