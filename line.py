@@ -1,10 +1,7 @@
-from action import Action
 import numpy as np
 
-class Line(Action):
+class Line:
     def __init__(self, start_point, end_point, point_of_interest, velocity):
-        super().__init__()
-
         self.__start_point       = start_point
         self.__end_point         = end_point
         self.__point_of_interest = point_of_interest

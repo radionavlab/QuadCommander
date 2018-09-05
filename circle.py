@@ -1,10 +1,7 @@
-from action import Action
 import numpy as np
 
-class Circle(Action):
+class Circle:
     def __init__(self, center_point, start_point, point_of_interest, tangential_velocity, arc_angle):
-        super().__init__()
-
         self.__center_point         = center_point
         self.__start_point          = start_point
         self.__point_of_interest    = point_of_interest

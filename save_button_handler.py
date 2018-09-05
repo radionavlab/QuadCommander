@@ -7,7 +7,7 @@ class SaveButtonHandler:
 
     def Handle(self, file_path): 
         with open(file_path, "w") as f:
-            print(jp.encode(self.__action_list), file=f)
+            f.write(jp.encode(self.__action_list))
 
         # Pretty print with json.tool
         command = \

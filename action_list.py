@@ -1,12 +1,7 @@
 import numpy as np
 import json
 
-from action import Action
-
-
-
-class ActionList(Action):
-
+class ActionList:
     def __init__(self, actions=[]):
         self.__action_list = actions
 

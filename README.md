@@ -1,3 +1,3 @@
 
 
-sudo pip3 install jsonpickle
+sudo pip2 install jsonpickle numpy

@@ -18,10 +18,12 @@ from numpy import arange, sin, pi
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.backend_bases import key_press_handler
 from matplotlib.figure import Figure
+import matplotlib.animation as animation
+import mpl_toolkits.mplot3d.axes3d as p3
 
-class Application(tk.Frame):
+class Application(tk.Frame, object):
     def __init__(self, root, action_list):
-        super().__init__(root)
+        super(Application, self).__init__(root)
         self.__root                 = root
         self.__action_list          = action_list
         self.__action_config_frame  = tk.Frame(self.__root)
@@ -89,7 +91,8 @@ class Application(tk.Frame):
         figure = Figure()
         canvas = FigureCanvasTkAgg(figure, master=self.__plot_frame)
         canvas.get_tk_widget().pack()
-        subplot = figure.add_subplot(111, projection='3d')
+        # subplot = figure.add_subplot(111, projection='3d')
+        subplot = p3.Axes3D(figure)
 
         # Serialize the action list and display it
         data_list = self.__action_list.Serialize(0.05)
@@ -100,13 +103,14 @@ class Application(tk.Frame):
     
             # Plot the yaw
             subplot.quiver(
-                    data[0,::10],
-                    data[1,::10],
-                    data[2,::10],
-                    np.cos(data[3,::10]),
-                    np.sin(data[3,::10]),
+                    data[0,::20],
+                    data[1,::20],
+                    data[2,::20],
+                    np.cos(data[3,::20]),
+                    np.sin(data[3,::20]),
                     0,
-                    length=0.5
+                    length=0.5, 
+                    pivot='tail'
             )
 
         # Labels and limits
@@ -123,9 +127,6 @@ class Application(tk.Frame):
 
 
     def AnimatePlot(self):
-        import matplotlib.animation as animation
-        import mpl_toolkits.mplot3d.axes3d as p3
-
         for widget in self.__plot_frame.winfo_children():
             widget.destroy()
 
