@@ -70,6 +70,9 @@ class Application(tk.Frame):
         # Add execute trajectory button
         tk.Button(self.__option_config_frame, text="Execute", command=None).pack(side="left", padx=(10,0))
 
+        LoadButtonHandler(self, self.__action_list).Handle('archive/circle.json')
+        # LoadButtonHandler(self, self.__action_list).Handle('archive/rectangle.json')
+
 
 
     def AddActionConfigBar(self, action_config):
@@ -91,7 +94,20 @@ class Application(tk.Frame):
         # Serialize the action list and display it
         data_list = self.__action_list.Serialize(0.05)
         for data in data_list:
+
+            # Plot the trajectory
             subplot.plot(data[0,:], data[1,:], data[2,:])
+    
+            # Plot the yaw
+            subplot.quiver(
+                    data[0,::10],
+                    data[1,::10],
+                    data[2,::10],
+                    np.cos(data[3,::10]),
+                    np.sin(data[3,::10]),
+                    0,
+                    length=0.5
+            )
 
         # Labels and limits
         subplot.set_xlabel("X (m)")
@@ -139,9 +155,9 @@ class Application(tk.Frame):
                 np.array([0]),
                 np.array([0]),
                 np.array([0]),
-                np.array([1]),
-                np.array([1]),
-                np.array([1]),
+                np.array([0]),
+                np.array([0]),
+                np.array([0]),
                 length=0.1
                 )
 
@@ -155,6 +171,19 @@ class Application(tk.Frame):
                     np.array([trajectory[1,i]]),
                     np.array([trajectory[2,i]])
                     )
+
+            quiv.set_segments([[
+                [
+                    trajectory[0,i],
+                    trajectory[1,i],
+                    trajectory[2,i]
+                ],
+                [
+                    trajectory[0,i] + np.cos(trajectory[3,i]),
+                    trajectory[1,i] + np.sin(trajectory[3,i]),
+                    trajectory[2,i]
+                ],
+                ]])
 
         ani = animation.FuncAnimation(
                 fig=figure, func=animate, frames=np.arange(0, num_points), interval=50, blit=False, repeat=False)

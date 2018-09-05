@@ -34,7 +34,12 @@ class Circle(Action):
         dr = self.__radius * np.array([np.cos(theta), np.sin(theta), np.zeros(theta.shape)])
         pos = dr + np.reshape(self.__center_point, (dr.shape[0],1))
 
-        return pos 
+        yaw = np.arctan2(
+                self.__point_of_interest[1] - pos[1],
+                self.__point_of_interest[0] - pos[0],
+                )
+
+        return np.vstack((pos, yaw))
 
     def __getstate__(self):
         """

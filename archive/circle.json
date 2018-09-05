@@ -12,6 +12,15 @@
                         1.0
                     ]
                 },
+                "_Line__point_of_interest": {
+                    "dtype": "float64",
+                    "py/object": "numpy.ndarray",
+                    "values": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
                 "_Line__start_point": {
                     "dtype": "float64",
                     "py/object": "numpy.ndarray",
@@ -88,6 +97,15 @@
                         2.0
                     ]
                 },
+                "_Line__point_of_interest": {
+                    "dtype": "float64",
+                    "py/object": "numpy.ndarray",
+                    "values": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
                 "_Line__start_point": {
                     "dtype": "float64",
                     "py/object": "numpy.ndarray",
@@ -164,6 +182,24 @@
                         2.0
                     ]
                 },
+                "_Line__point_of_interest": {
+                    "dtype": "float64",
+                    "py/object": "numpy.ndarray",
+                    "values": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                "_Line__point_of_interest": {
+                    "dtype": "float64",
+                    "py/object": "numpy.ndarray",
+                    "values": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
                 "_Line__start_point": {
                     "dtype": "float64",
                     "py/object": "numpy.ndarray",
@@ -186,6 +222,15 @@
             "py/object": "line.Line",
             "py/state": {
                 "_Line__end_point": {
+                    "dtype": "float64",
+                    "py/object": "numpy.ndarray",
+                    "values": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                "_Line__point_of_interest": {
                     "dtype": "float64",
                     "py/object": "numpy.ndarray",
                     "values": [

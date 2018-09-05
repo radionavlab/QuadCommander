@@ -18,10 +18,15 @@ class Line(Action):
 
     def Serialize(self, frequency):
         dt = self.__time / frequency
-        return np.vstack((
+        pos = np.vstack((
             np.linspace(self.__start_point[0], self.__end_point[0], dt, endpoint=True),
             np.linspace(self.__start_point[1], self.__end_point[1], dt, endpoint=True),
             np.linspace(self.__start_point[2], self.__end_point[2], dt, endpoint=True)))
+        yaw = np.arctan2(
+                self.__point_of_interest[1] - pos[1],
+                self.__point_of_interest[0] - pos[0],
+                )
+        return np.vstack((pos, yaw))
 
 
     def __getstate__(self):
