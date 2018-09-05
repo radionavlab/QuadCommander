@@ -5,50 +5,39 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import tkinter as tk
 import jsonpickle.ext.numpy as jp_numpy
+import threading
+import rospy
+from Queue import Queue
 
-from line                   import Line
-from circle                 import Circle
-from action_list            import ActionList
-from config_bar             import ConfigBar
-from application            import Application
-from add_circle_handler     import AddCircleHandler
-from add_line_handler       import AddLineHandler
-
-def AddCircleConfigBar(application, action_list):
-    application.AddActionConfigBar(
-        ConfigBar()
-            .Name("Circle")
-            .EntryLabels(["Center Point", "Start Point", "Point of Interest", "Tangential Velocity", "Arc Angle"])
-            .ButtonText("Add")
-            .Callback(AddCircleHandler(application, action_list).Handle))
-
-def AddLineConfigBar(application, action_list):
-    application.AddActionConfigBar(
-        ConfigBar()
-            .Name("Line")
-            .EntryLabels(["Start Point", "End Point", "Point of Interest", "Velocity"])
-            .ButtonText("Add")
-            .Callback(AddLineHandler(application, action_list).Handle))
+from application import Application
+from node        import Node
 
 def main():
     # Configure the json numpy handlers
     jp_numpy.register_handlers()
 
+    # Create trajectory queue
+    trajectory_queue = Queue()
+
+    # Create ROS node
+    node = Node(trajectory_queue)
+    node_thread = threading.Thread(target=node.Run)
+    node_thread.start()
+
     # Create graphics root
     root = tk.Tk()
 
-    # Create action list
-    action_list = ActionList()
-
     # Create custom graphics application
-    application = Application(root, action_list)
+    application = Application(root, trajectory_queue)
 
-    # Add action elements
-    AddCircleConfigBar(application, action_list)
-    AddLineConfigBar(application, action_list)
-
-    # Start
+    # Start. Blocks until main window closes.
     root.mainloop()
+
+    # If window closed, kill rospy
+    rospy.signal_shutdown('Quit')
+
+    # Wait for node thread
+    node_thread.join()
 
 
 if __name__ == "__main__":

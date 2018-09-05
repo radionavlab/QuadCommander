@@ -5,6 +5,10 @@ from tkinter import Button
 
 from line import Line
 from circle import Circle
+from action_list import ActionList
+from config_bar import ConfigBar
+from add_circle_handler import AddCircleHandler
+from add_line_handler import AddLineHandler
 from popup_text_box import PopupTextBox
 from save_button_handler import SaveButtonHandler
 from load_button_handler import LoadButtonHandler
@@ -22,13 +26,15 @@ import matplotlib.animation as animation
 import mpl_toolkits.mplot3d.axes3d as p3
 
 class Application(tk.Frame, object):
-    def __init__(self, root, action_list):
+    def __init__(self, root, trajectory_queue):
         super(Application, self).__init__(root)
         self.__root                 = root
-        self.__action_list          = action_list
+        self.__trajectory_queue     = trajectory_queue
         self.__action_config_frame  = tk.Frame(self.__root)
         self.__plot_frame           = tk.Frame(self.__root)
         self.__option_config_frame  = tk.Frame(self.__root)
+
+        self.__action_list = ActionList()
 
         self.__configure__()
 
@@ -47,6 +53,22 @@ class Application(tk.Frame, object):
         self.__action_config_frame.grid_propagate(False)
         self.__plot_frame.grid_propagate(False)
         self.__option_config_frame.grid_propagate(False)
+
+        # Add circle config bar
+        self.AddActionConfigBar(
+            ConfigBar()
+                .Name("Circle")
+                .EntryLabels(["Center Point", "Start Point", "Point of Interest", "Tangential Velocity", "Arc Angle"])
+                .ButtonText("Add")
+                .Callback(AddCircleHandler(self, self.__action_list).Handle))
+    
+        # Add line config bar
+        self.AddActionConfigBar(
+            ConfigBar()
+                .Name("Line")
+                .EntryLabels(["Start Point", "End Point", "Point of Interest", "Velocity"])
+                .ButtonText("Add")
+                .Callback(AddLineHandler(self, self.__action_list).Handle))
 
         # Add save button
         tk.Button(self.__option_config_frame, text="Save",
@@ -70,11 +92,12 @@ class Application(tk.Frame, object):
         tk.Button(self.__option_config_frame, text="Preview", command=self.AnimatePlot).pack(side="left", padx=(10,0))
 
         # Add execute trajectory button
-        tk.Button(self.__option_config_frame, text="Execute", command=None).pack(side="left", padx=(10,0))
+        tk.Button(self.__option_config_frame, text="Execute", command=
+                lambda: self.__trajectory_queue.put(np.concatenate(self.__action_list.Serialize(0.05), 1))
+                ).pack(side="left", padx=(10,0))
 
-        LoadButtonHandler(self, self.__action_list).Handle('archive/circle.json')
+        LoadButtonHandler(self, self.__action_list).Handle('/home/tuckerhaydon/ROS/src/QuadCommander/archive/circle.json')
         # LoadButtonHandler(self, self.__action_list).Handle('archive/rectangle.json')
-
 
 
     def AddActionConfigBar(self, action_config):
@@ -91,7 +114,6 @@ class Application(tk.Frame, object):
         figure = Figure()
         canvas = FigureCanvasTkAgg(figure, master=self.__plot_frame)
         canvas.get_tk_widget().pack()
-        # subplot = figure.add_subplot(111, projection='3d')
         subplot = p3.Axes3D(figure)
 
         # Serialize the action list and display it
