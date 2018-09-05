@@ -67,7 +67,7 @@ class Application(tk.Frame):
         # Add execute trajectory button
         tk.Button(self.__option_config_frame, text="Execute", command=self.AnimatePlot).pack(side="left", padx=(10,0))
 
-        LoadButtonHandler(self, self.__action_list).Handle('archive/circle.json')
+        # LoadButtonHandler(self, self.__action_list).Handle('archive/circle.json')
 
 
 
@@ -119,8 +119,8 @@ class Application(tk.Frame):
 
         # Serialize the action list and display it
         paths = self.__action_list.Serialize(0.05)
-        # for path in paths:
-        #     subplot.plot(path[0,:], path[1,:], path[2,:])
+        for path in paths:
+            subplot.plot(path[0,:], path[1,:], path[2,:])
 
         trajectory = np.concatenate([path for path in paths], 1)
         num_points = trajectory.shape[1]
@@ -128,25 +128,24 @@ class Application(tk.Frame):
         scat = subplot.scatter(
             xs=np.array([0]),
             ys=np.array([0]),
-            zs=np.array([0])
+            zs=np.array([0]),
+            s=40
             )
 
-        # subplot.set_xlabel("X (m)")
-        # subplot.set_ylabel("Y (m)")
-        # subplot.set_zlabel("Z (m)")
+        subplot.set_xlabel("X (m)")
+        subplot.set_ylabel("Y (m)")
+        subplot.set_zlabel("Z (m)")
 
         def animate(i):
             print(i)
-            # offset = ( 
-            #         trajectory[0,i],
-            #         trajectory[1,i],
-            #         trajectory[2,i]
-            # )
-
-            scat._offsets3d = (1, 2, 3)
+            scat._offsets3d = (
+                    np.array([trajectory[0,i]]),
+                    np.array([trajectory[1,i]]),
+                    np.array([trajectory[2,i]])
+                    )
 
         ani = animation.FuncAnimation(
-                fig=figure, func=animate, frames=np.arange(0, 200), interval=50, blit=False)
+                fig=figure, func=animate, frames=np.arange(0, num_points), interval=50, blit=False, repeat=False)
 
         # Draw
         canvas.draw()
