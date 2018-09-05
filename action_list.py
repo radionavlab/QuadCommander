@@ -24,4 +24,3 @@ class ActionList(Action):
 
     def Serialize(self, frequency):
         return [action.Serialize(frequency) for action in self.__action_list]
-        # return np.concatenate([action.Serialize(frequency) for action in self.__action_list], 1) 
