@@ -19,11 +19,22 @@ class Line:
             np.linspace(self.__start_point[0], self.__end_point[0], dt, endpoint=True),
             np.linspace(self.__start_point[1], self.__end_point[1], dt, endpoint=True),
             np.linspace(self.__start_point[2], self.__end_point[2], dt, endpoint=True)))
+
+        # Compose yaw
         yaw = np.arctan2(
                 self.__point_of_interest[1] - pos[1],
                 self.__point_of_interest[0] - pos[0],
-                )
-        return np.vstack((pos, yaw))
+                ).reshape((1, pos.shape[1]))
+
+        # Compose velocity
+        direction = self.__end_point - self.__start_point;
+        vel = self.__velocity * (direction / np.linalg.norm(direction))
+        vel = np.repeat(vel[:,np.newaxis], pos.shape[1], 1)
+
+        # Line has no acceleration
+        acc = np.zeros(pos.shape)
+
+        return np.vstack((pos, yaw, vel, acc))
 
 
     def __getstate__(self):

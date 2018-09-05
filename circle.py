@@ -36,7 +36,19 @@ class Circle:
                 self.__point_of_interest[0] - pos[0],
                 )
 
-        return np.vstack((pos, yaw))
+        vel = np.zeros(pos.shape)
+        for i in xrange(pos.shape[1]):
+            # velocity = tangential_velocity * norm(cross(r, +z-axis))
+            r = pos[:,i] - self.__center_point
+            vel[:,i] = self.__tangential_velocity * np.linalg.norm(np.cross(r, np.array([0, 0, 1])))
+
+        acc = np.zeros(pos.shape)
+        for i in xrange(pos.shape[1]):
+            # Centripetal acceleration = v * v * -r / norm(r)^2
+            r = pos[:,i] - self.__center_point
+            acc[:,i] = self.__tangential_velocity * self.__tangential_velocity * -r / np.power(np.linalg.norm(r), 2)
+
+        return np.vstack((pos, yaw, vel, acc))
 
     def __getstate__(self):
         """

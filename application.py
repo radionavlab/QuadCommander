@@ -97,7 +97,7 @@ class Application(tk.Frame, object):
                 ).pack(side="left", padx=(10,0))
 
         LoadButtonHandler(self, self.__action_list).Handle('/home/tuckerhaydon/ROS/src/QuadCommander/archive/circle.json')
-        # LoadButtonHandler(self, self.__action_list).Handle('archive/rectangle.json')
+        # LoadButtonHandler(self, self.__action_list).Handle('/home/tuckerhaydon/ROS/src/QuadCommander/archive/rectangle.json')
 
 
     def AddActionConfigBar(self, action_config):
