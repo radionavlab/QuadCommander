@@ -3,3 +3,5 @@
 *.m
 __pycache__
 *.pyc
+plt
+tk
