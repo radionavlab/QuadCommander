@@ -135,6 +135,16 @@ class Application(tk.Frame):
             c='k'
             )
 
+        quiv = subplot.quiver(
+                np.array([0]),
+                np.array([0]),
+                np.array([0]),
+                np.array([1]),
+                np.array([1]),
+                np.array([1]),
+                length=0.1
+                )
+
         subplot.set_xlabel("X (m)")
         subplot.set_ylabel("Y (m)")
         subplot.set_zlabel("Z (m)")
