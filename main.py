@@ -3,7 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-import tkinter as tk
+import Tkinter as tk
 import jsonpickle.ext.numpy as jp_numpy
 import threading
 import rospy

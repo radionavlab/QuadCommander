@@ -1,7 +1,7 @@
-import tkinter as tk
-from tkinter import Label
-from tkinter import Entry
-from tkinter import Button
+import Tkinter as tk
+from Tkinter import Label
+from Tkinter import Entry
+from Tkinter import Button
 
 from line import Line
 from circle import Circle
@@ -104,7 +104,8 @@ class Application(tk.Frame, object):
                 ).pack(side="left", padx=(10,0))
 
         # Auto-load a file
-        LoadButtonHandler(self, self.__action_list).Handle('/home/tuckerhaydon/ROS/src/QuadCommander/archive/circle.json')
+        LoadButtonHandler(self, self.__action_list).Handle('/home/shack1/ROS/src/QuadCommander/archive/test.json')
+        # LoadButtonHandler(self, self.__action_list).Handle('/home/shack1/ROS/src/QuadCommander/archive/circle.json')
         # LoadButtonHandler(self, self.__action_list).Handle('/home/tuckerhaydon/ROS/src/QuadCommander/archive/rectangle.json')
         # LoadButtonHandler(self, self.__action_list).Handle('/tmp/circle')
 

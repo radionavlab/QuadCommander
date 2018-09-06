@@ -10,7 +10,7 @@ class Node:
         self.__trajectory_queue = trajectory_queue
 
         rospy.init_node('trajectory_generator')
-        self.__trajectory_publisher = rospy.Publisher('trajectory', PVATrajectory, queue_size=1)
+        self.__trajectory_publisher = rospy.Publisher('/phoenix/trajectory', PVATrajectory, queue_size=1)
 
     def Run(self):
         rate = rospy.Rate(10)
