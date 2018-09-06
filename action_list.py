@@ -8,6 +8,8 @@ class ActionList:
     def Copy(self, other):
         self.__action_list = other.__action_list
 
+    def Clear(self):
+        self.__action_list = []
     
     def AddAction(self, action):
         self.__action_list.append(action)

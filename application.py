@@ -89,6 +89,9 @@ class Application(tk.Frame, object):
                     button_command=LoadButtonHandler(self, self.__action_list).Handle).Popup
                 ).pack(side="left", padx=(10,0))
 
+        # Add clear button
+        tk.Button(self.__option_config_frame, text="Clear", command=self.ClearActionList).pack(side="left", padx=(10,0))
+
         # Add preview button
         tk.Button(self.__option_config_frame, text="Preview", command=self.AnimatePlot).pack(side="left", padx=(10,0))
 
@@ -110,6 +113,10 @@ class Application(tk.Frame, object):
         frame = tk.Frame(self.__action_config_frame)
         action_config.Build(frame)
         frame.pack(side="top", anchor="w")
+
+    def ClearActionList(self):
+        self.__action_list.Clear()
+        self.DrawPlot()
          
 
     def DrawPlot(self):
