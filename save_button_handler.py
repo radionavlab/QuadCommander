@@ -14,5 +14,5 @@ class SaveButtonHandler:
                 "mv " + file_path + " " + file_path + ".tmp; " + \
                 "cat " + file_path + ".tmp | python -m json.tool > " + file_path + "; " \
                 "rm " + file_path + ".tmp;"
-        process = subprocess.run(command, shell=True, check=True)
+        process = subprocess.call(command, shell=True)
 

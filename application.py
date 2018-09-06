@@ -16,6 +16,7 @@ from load_button_handler import LoadButtonHandler
 import numpy as np
 
 import matplotlib
+import matplotlib.pyplot as plt
 matplotlib.use('TkAgg')
 
 from numpy import arange, sin, pi
@@ -91,13 +92,18 @@ class Application(tk.Frame, object):
         # Add preview button
         tk.Button(self.__option_config_frame, text="Preview", command=self.AnimatePlot).pack(side="left", padx=(10,0))
 
+        # Add plot button
+        tk.Button(self.__option_config_frame, text="Plots", command=self.PlotPVA).pack(side="left", padx=(10,0))
+
         # Add execute trajectory button
         tk.Button(self.__option_config_frame, text="Execute", command=
                 lambda: self.__trajectory_queue.put(np.concatenate(self.__action_list.Serialize(0.05), 1))
                 ).pack(side="left", padx=(10,0))
 
+        # Auto-load a file
         LoadButtonHandler(self, self.__action_list).Handle('/home/tuckerhaydon/ROS/src/QuadCommander/archive/circle.json')
         # LoadButtonHandler(self, self.__action_list).Handle('/home/tuckerhaydon/ROS/src/QuadCommander/archive/rectangle.json')
+        # LoadButtonHandler(self, self.__action_list).Handle('/tmp/circle')
 
 
     def AddActionConfigBar(self, action_config):
@@ -146,6 +152,50 @@ class Application(tk.Frame, object):
 
         # Draw
         canvas.draw()
+    
+
+    def PlotPVA(self):
+        # Sample trajectory
+        dt = 0.05
+        pva = np.concatenate(self.__action_list.Serialize(dt), 1)
+        t = np.linspace(0, pva.shape[1]*dt, pva.shape[1])
+
+        # Begin figure
+        fig = Figure()
+     
+        # Velocity Subplot
+        plt.subplot(231)
+        plt.title('X Velocity (m/s)')
+        plt.plot(t, pva[4,:])
+        plt.grid(True)
+    
+        plt.subplot(232)
+        plt.title('Y Velocity (m/s)')
+        plt.plot(t, pva[5,:])
+        plt.grid(True)
+
+        plt.subplot(233)
+        plt.title('Z Velocity (m/s)')
+        plt.plot(t, pva[6,:])
+        plt.grid(True)
+    
+        # Acceleration subplot
+        plt.subplot(234)
+        plt.title('X Acceleration (m/s^2)')
+        plt.plot(t, pva[7,:])
+        plt.grid(True)
+    
+        plt.subplot(235)
+        plt.title('Y Acceleration (m/s^2)')
+        plt.plot(t, pva[8,:])
+        plt.grid(True)
+
+        plt.subplot(236)
+        plt.title('Z Acceleration (m/s^2)')
+        plt.plot(t, pva[9,:])
+        plt.grid(True)
+    
+        plt.show()
 
 
     def AnimatePlot(self):

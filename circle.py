@@ -38,9 +38,10 @@ class Circle:
 
         vel = np.zeros(pos.shape)
         for i in xrange(pos.shape[1]):
-            # velocity = tangential_velocity * norm(cross(r, +z-axis))
+            # velocity = tangential_velocity * normalize(cross(+z-axis, r))
             r = pos[:,i] - self.__center_point
-            vel[:,i] = self.__tangential_velocity * np.linalg.norm(np.cross(r, np.array([0, 0, 1])))
+            direction = np.cross(np.array([0, 0, 1]), r)
+            vel[:,i] = self.__tangential_velocity * (direction / np.linalg.norm(direction))
 
         acc = np.zeros(pos.shape)
         for i in xrange(pos.shape[1]):
