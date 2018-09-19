@@ -104,7 +104,7 @@ class Application(tk.Frame, object):
                 ).pack(side="left", padx=(10,0))
 
         # Auto-load a file
-        LoadButtonHandler(self, self.__action_list).Handle('/home/shack1/ROS/src/QuadCommander/archive/test.json')
+        # LoadButtonHandler(self, self.__action_list).Handle('/home/shack1/ROS/src/QuadCommander/archive/test.json')
         # LoadButtonHandler(self, self.__action_list).Handle('/home/shack1/ROS/src/QuadCommander/archive/circle.json')
         # LoadButtonHandler(self, self.__action_list).Handle('/home/tuckerhaydon/ROS/src/QuadCommander/archive/rectangle.json')
         # LoadButtonHandler(self, self.__action_list).Handle('/tmp/circle')
